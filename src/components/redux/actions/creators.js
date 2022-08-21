@@ -43,15 +43,25 @@ export const deleteContactAction = (id) => (dispatch) => {
   return deleteContactPromise;
 };
 
-export const updateContactAction = (contact, id) => (dispatch) => {
-  const updateContactPromise = axios
-    .put(`https://62fe9f5a41165d66bfc33c26.mockapi.io/Crud/${id}`, contact)
-    .then((response) => {
-      console.log('RESP FROM UPDATE C AC', response);
-      dispatch(updateContact(contact));
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-  return updateContactPromise;
-};
+export const updateContactAction =
+  ({ firstName, lastName }, id) =>
+  (dispatch) => {
+    const updateContactPromise = axios
+      .put(`https://62fe9f5a41165d66bfc33c26.mockapi.io/Crud/${id}`, {
+        firstName,
+        lastName,
+      })
+      .then((response) => {
+        dispatch(
+          updateContact({
+            firstName,
+            lastName,
+            id,
+          })
+        );
+      })
+      .catch((error) => {
+        console.log('ERR ', error);
+      });
+    return updateContactPromise;
+  };

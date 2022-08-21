@@ -8,26 +8,30 @@ export const ActionTypes = {
 export const getContacts = (contacts) => {
   return {
     type: ActionTypes.GET_CONTACTS,
-    contacts,
+    payload: contacts,
   };
 };
 
 export const addContact = (contact) => {
   return {
     type: ActionTypes.ADD_CONTACT,
-    contact,
+    payload: contact,
   };
 };
 
 export const deleteContact = (id) => {
   return {
     type: ActionTypes.DELETE_CONTACT,
-    id,
+    payload: id,
   };
 };
-export const updateContact = (contact) => {
+export const updateContact = ({ firstName, lastName, id }) => {
   return {
     type: ActionTypes.UPDATE_CONTACT,
-    contact,
+    payload: {
+      firstName,
+      lastName,
+      id,
+    },
   };
 };

@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Table, Button } from 'semantic-ui-react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
-import './read.css';
-
-import { deleteContactAction, getAllContacts } from '../redux/actions/creators';
 import { useDispatch, useSelector } from 'react-redux';
+
+import './read.css';
+import { deleteContactAction, getAllContacts } from '../redux/actions/creators';
 
 export default function Read() {
   let dispatch = useDispatch();

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'semantic-ui-react';
 import { useHistory } from 'react-router';
-import { connect, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { addContactAction } from '../redux/actions/creators';
 
-export function Create() {
+export default function Create() {
   const dispatch = useDispatch();
   const history = useHistory();
   const [firstName, setFirstName] = useState('');
@@ -47,4 +47,3 @@ export function Create() {
     </div>
   );
 }
-export default connect(null, { addContactAction })(Create);

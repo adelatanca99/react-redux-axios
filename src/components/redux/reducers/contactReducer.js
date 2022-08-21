@@ -3,23 +3,22 @@ import { ActionTypes } from '../actions/contactActions';
 const initialState = [];
 
 export const contactReducer = (state = initialState, action) => {
-  switch (action.type) {
+  const { type, payload } = action;
+  switch (type) {
     case ActionTypes.GET_CONTACTS:
-      return action.contacts;
+      return payload;
     case ActionTypes.ADD_CONTACT:
-      return action.payload;
+      return [...state, payload];
     case ActionTypes.DELETE_CONTACT:
-      return state.filter((contact) =>
-        contact.id === action.payload ? null : contact
-      );
-
+      return state.filter(({ id }) => id !== payload);
     case ActionTypes.UPDATE_CONTACT:
-      const contactUpdate = state.filter((contact) =>
-        contact.id === action.payload.id
-          ? Object.assign(contact, action.payload)
-          : contact
-      );
-      return { ...state, contactUpdate };
+      return state.map((contact) => {
+        if (contact.id === payload.id) {
+          return { ...contact, ...payload };
+        } else {
+          return contact;
+        }
+      });
     default:
       return state;
   }
