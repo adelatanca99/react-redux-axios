@@ -6,14 +6,14 @@ export const contactReducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionTypes.GET_CONTACTS:
       return action.contacts;
-    case ActionTypes.ADD_USER:
-      return { ...state, contact: action.payload };
-    case ActionTypes.DELETE_USER:
-      const contactFilter = state.filter((contact) =>
+    case ActionTypes.ADD_CONTACT:
+      return action.payload;
+    case ActionTypes.DELETE_CONTACT:
+      return state.filter((contact) =>
         contact.id === action.payload ? null : contact
       );
-      return { ...state, contactFilter };
-    case ActionTypes.UPDATE_USER:
+
+    case ActionTypes.UPDATE_CONTACT:
       const contactUpdate = state.filter((contact) =>
         contact.id === action.payload.id
           ? Object.assign(contact, action.payload)
